@@ -1,4 +1,8 @@
+-- criação do banco de dados
+
 create database tecnohub;
+
+-- criação das tabelas
 
 create table endereco(
 	end_cd_id serial primary key not null,
@@ -59,6 +63,16 @@ create table pedido_produto(
 	foreign key (prod_int_id) references produto(prod_cd_id),
 	foreign key (ped_int_id) references pedido(ped_cd_id)
 );
+
+-- insert da tabela endereco
+
+insert into endereco(end_tx_rua, end_tx_bairro, end_tx_numero, end_tx_cidade, end_tx_estado)
+values 
+	('Autumn Leaf','Plaza','29','Long Beach','California'),
+	('Stephen','Street','071','San Jose','Columbia'),
+	('Gale','Plaza','396','Pasadena','Coimbra'),
+	('Washington','Crossing','1779','Algarvia','Ilha de São Miguel'),
+	('Stone Corner','Circle','53242','Lamarosa','Ilha do Pico');
 
 /*create view nota_fiscal
 	end_id int,
