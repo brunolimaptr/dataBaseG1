@@ -83,8 +83,18 @@ values
 	foreign key (usu_id) references usuario(usu_id);
 	*/
 
+--Alteração do tipo para texto para caber mais caracteres
+alter table categoria 
+alter column cat_tx_descricao type text;
 
+--Insert da tabela categoria
+insert into categoria (cat_tx_nome, cat_tx_descricao)
+values
+('Monitores', 'Nesta categoria temos uma variedade de monitores para computadores'),
+('Mouses', 'Nesta categoria temos todos os tipos de mouse'),
+('Teclados', 'Nesta categoria temos desde teclados gamer para computadores, até teclados que podem ser usados em celulares'),
+('CPU', 'Nesta categoria temos desde de CPU gamer, até as mais simples'),
+('GPU', 'As GPUs são as peças responsáveis pelo processamento de imagem nos nossos computadores. Nesta categoria temos GPU de diferentes capacidades gráficas');
 
-
-
+select * from categoria;
 
