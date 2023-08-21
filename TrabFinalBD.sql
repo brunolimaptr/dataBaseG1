@@ -2,6 +2,8 @@
 
 create database tecnohub;
 
+-- tecnohub, uma loja de periféricos eletrônicos para todos os gostos!
+
 -- criação das tabelas
 
 create table endereco(
