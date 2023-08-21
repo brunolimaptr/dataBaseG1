@@ -100,3 +100,11 @@ values
 
 select * from categoria;
 
+
+INSERT INTO USUARIO  (USU_TX_NOME, USU_TX_NOME_USUARIO, USU_TX_EMAIL, USU_TX_CPF, USU_DT_DATA_NASCIMENTO, END_INT_ID)
+VALUES('Roze Simonnot','Roze', 'rozesimonnot@yahoo.com', '12365478965', '1975-12-25',1),
+('Ferdinanda Narducci','Ferdinanda', 'ferdinandanarducci@yahoo.com', '15478965482', '1987-05-20', 2),
+('Aloysia Di Napoli','Aloysia','aloysianapoli@yahoo.com', '25031247802', '1875-09-05', 3),
+('Angelica Duthy', 'Angelica','angelicaduthy@gmail.com', '00254896314', '1991-03-09',4),
+('Filip Bayston','Filip', 'filipbayston@hotmail.com','54112569874', '1975-6-22',5);
+
