@@ -171,8 +171,20 @@ VALUES
 SELECT * FROM PRODUTO P 
 
 
+insert into pedido_produto(ped_int_id, prod_int_id)
+values
+(1,2),
+(1,1),
+(2,4),
+(2,5),
+(3,3),
+(3,10),
+(4,9),
+(4,6),
+(5,7),
+(5,8);
 
-
+select * from pedido_produto;
 
 
 
