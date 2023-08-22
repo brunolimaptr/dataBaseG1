@@ -66,6 +66,28 @@ create table pedido_produto(
 	foreign key (ped_int_id) references pedido(ped_cd_id)
 );
 
+-- criação da view nota_fiscal
+
+/*create view nota_fiscal as
+select
+	u.usu_tx_nome,
+	u.usu_tx_cpf,
+	p.ped_dt_data_pedido,
+	p2.prod_tx_nome,
+	p2.prod_nm_valor,
+	f.func_tx_nome
+from usuario u
+inner join pedido p on
+	u.usu_cd_id = p.usu_int_id
+inner join pedido_produto pp on
+	p.ped_cd_id = pp.ped_int_id 
+inner join produto p2 on
+	pp.prod_int_id = p2.prod_cd_id 
+inner join funcionario f on
+	p2.func_int_id = f.func_cd_id;*/
+
+drop view nota_fiscal;
+
 -- insert da tabela endereco
 
 insert into endereco(end_tx_rua, end_tx_bairro, end_tx_numero, end_tx_cidade, end_tx_estado)
@@ -76,14 +98,6 @@ values
 	('Washington','Crossing','1779','Algarvia','Ilha de São Miguel'),
 	('Stone Corner','Circle','53242','Lamarosa','Ilha do Pico');
 
-/*create view nota_fiscal
-	end_id int,
-	prod_id int,
-	usu_id int,
-	foreign key (prod_id) references produto(prod_id),
-	foreign key (end_id) references endereco(end_id),
-	foreign key (usu_id) references usuario(usu_id);
-	*/
 
 --Alteração do tipo para texto para caber mais caracteres
 alter table categoria 
@@ -99,6 +113,8 @@ values
 ('GPU', 'As GPUs são as peças responsáveis pelo processamento de imagem nos nossos computadores. Nesta categoria temos GPU de diferentes capacidades gráficas');
 
 select * from categoria;
+
+select * from usuario;
 
 
 INSERT INTO USUARIO  (USU_TX_NOME, USU_TX_NOME_USUARIO, USU_TX_EMAIL, USU_TX_CPF, USU_DT_DATA_NASCIMENTO, END_INT_ID)
