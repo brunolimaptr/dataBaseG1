@@ -200,5 +200,15 @@ inner join funcionario f on
 
 select * from nota_fiscal;
 
-
+-- Inner join para descobri os usuários que compraram Monitor 19.5 LED Ergonômico
+select usu_cd_id,usu_tx_nome, usu_tx_nome_usuario, prod_tx_nome 
+from usuario u 
+inner join pedido p
+on u.usu_cd_id = p.usu_int_id
+inner join pedido_produto pp 
+on p.usu_int_id = pp.ped_int_id
+inner join produto p2
+on p2.prod_cd_id =pp.prod_int_id
+where 
+prod_tx_nome = :prod;
 
