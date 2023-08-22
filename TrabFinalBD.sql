@@ -114,8 +114,9 @@ values
 
 select * from categoria;
 
-select * from usuario;
+delete from categoria where cat_cd_id = 6;
 
+select * from usuario;
 
 INSERT INTO USUARIO  (USU_TX_NOME, USU_TX_NOME_USUARIO, USU_TX_EMAIL, USU_TX_CPF, USU_DT_DATA_NASCIMENTO, END_INT_ID)
 VALUES('Roze Simonnot','Roze', 'rozesimonnot@yahoo.com', '12365478965', '1975-12-25',1),
@@ -134,5 +135,5 @@ values('21-08-2023 17:53:00',1),
 
 select * from pedido;
 
-delete from pedido where ped_cd_id = 6;
+delete from pedido where ped_cd_id = 11;
 
