@@ -138,6 +138,7 @@ select * from pedido;
 delete from pedido where ped_cd_id = 11;
 
 -- Insert tabela do funcionário
+
 insert into funcionario (func_tx_nome, func_tx_cpf)
 values ('Junior','01234567899' ),
 ('Sthefany','22233344456'),
@@ -151,6 +152,25 @@ from funcionario;
 
 alter table funcionario 
 rename column fun_tx_cpf to func_tx_cpf;
+
+alter table PRODUTO 
+alter column prod_tx_descricao type text;
+
+INSERT INTO produto (CAT_INT_ID ,FUNC_INT_ID , PROD_TX_NOME, PROD_TX_DESCRICAO , PROD_INT_ESTOQUE , PROD_DT_DATA_FABRICACAO, PROD_NM_VALOR)
+VALUES
+(1, 5, 'Monitor 19.5 LED Ergonômico',' Widescreen, 2ms, 75Hz, hd +, hdmi, vesa, hq Pro 195HQA', 25, '2020-05-15', '450.50')
+(1, 2, 'Monitor AOC 21.5', 'Full HD LED Widescreen HDMI 22B1HM5',10, '2022-08-20' , '500.00'),
+(2, 3, 'AW320M', 'MOUSE GAMER COM FIO ALIENWARE', 25, '2023-01-01', '100.00'),
+(2, 4, 'Logitech M90','Cinza. Design Ambidestro e Facilidade Plug and Play.',25, '2022-10-06', '80.00'),
+(3, 1, 'Logitech G213','Prodigy com Iluminação RGB Nítida Controles de Mída Dedicados', 20, '2022-10-10', '399.00'),
+(3, 5, 'Teclado mingzhe sem fio BT','teclado dobrável portátil ultra fino teclado BT com touchpad para Windows/Android/iOS cinza', 10, '2022-10-15', '138.00'),
+(4, 3, 'PC HOME OFFICE INTEL CORE I5',' 3.2GHZ - 16GB - SSD 480GB', 15, '2022-07-01', '1500.00'),
+(4, 4, 'intel core i5-13600k','Processor 24M  5.10 GHz quick reference specifications features technologies', 25, '2022-09-02', '2000.00'),
+(5, 1, 'Nvidia Pcyes GeForce 200 Series','Placa de vídeo Nvidia Pcyes GeForce 200 Series G210 PA210G6401D3LP 1GB', 35, '2020-12-25', '200.00'),
+(5, 1, 'GeForce RTX® 4090','ASUS Placa gráfica ROG Strix', 5, '2020-02-26', '18000.00');
+
+SELECT * FROM PRODUTO P 
+
 
 
 
