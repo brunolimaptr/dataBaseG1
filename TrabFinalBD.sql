@@ -137,3 +137,23 @@ select * from pedido;
 
 delete from pedido where ped_cd_id = 11;
 
+-- Insert tabela do funcionário
+insert into funcionario (func_tx_nome, func_tx_cpf)
+values ('Junior','01234567899' ),
+('Sthefany','22233344456'),
+('Luiz', '55566677789'),
+('Josi','11122233345'),
+('Sophia','77788899911');
+
+select func_tx_cpf
+from funcionario;
+
+
+alter table funcionario 
+rename column fun_tx_cpf to func_tx_cpf;
+
+
+
+
+
+
