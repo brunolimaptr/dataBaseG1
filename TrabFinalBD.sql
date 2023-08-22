@@ -66,28 +66,6 @@ create table pedido_produto(
 	foreign key (ped_int_id) references pedido(ped_cd_id)
 );
 
--- criação da view nota_fiscal
-
-/*create view nota_fiscal as
-select
-	u.usu_tx_nome,
-	u.usu_tx_cpf,
-	p.ped_dt_data_pedido,
-	p2.prod_tx_nome,
-	p2.prod_nm_valor,
-	f.func_tx_nome
-from usuario u
-inner join pedido p on
-	u.usu_cd_id = p.usu_int_id
-inner join pedido_produto pp on
-	p.ped_cd_id = pp.ped_int_id 
-inner join produto p2 on
-	pp.prod_int_id = p2.prod_cd_id 
-inner join funcionario f on
-	p2.func_int_id = f.func_cd_id;*/
-
-drop view nota_fiscal;
-
 -- insert da tabela endereco
 
 insert into endereco(end_tx_rua, end_tx_bairro, end_tx_numero, end_tx_cidade, end_tx_estado)
@@ -186,6 +164,28 @@ values
 (5,8);
 
 select * from pedido_produto;
+
+-- criação da view nota_fiscal
+
+create view nota_fiscal as
+select
+	u.usu_tx_nome,
+	u.usu_tx_cpf,
+	p.ped_dt_data_pedido,
+	p2.prod_tx_nome,
+	p2.prod_nm_valor,
+	f.func_tx_nome
+from usuario u
+inner join pedido p on
+	u.usu_cd_id = p.usu_int_id
+inner join pedido_produto pp on
+	p.ped_cd_id = pp.ped_int_id 
+inner join produto p2 on
+	pp.prod_int_id = p2.prod_cd_id 
+inner join funcionario f on
+	p2.func_int_id = f.func_cd_id;
+
+select * from nota_fiscal;
 
 
 
