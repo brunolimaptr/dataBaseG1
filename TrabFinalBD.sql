@@ -158,7 +158,7 @@ alter column prod_tx_descricao type text;
 
 INSERT INTO produto (CAT_INT_ID ,FUNC_INT_ID , PROD_TX_NOME, PROD_TX_DESCRICAO , PROD_INT_ESTOQUE , PROD_DT_DATA_FABRICACAO, PROD_NM_VALOR)
 VALUES
-(1, 5, 'Monitor 19.5 LED Ergonômico',' Widescreen, 2ms, 75Hz, hd +, hdmi, vesa, hq Pro 195HQA', 25, '2020-05-15', '450.50')
+(1, 5, 'Monitor 19.5 LED Ergonômico',' Widescreen, 2ms, 75Hz, hd +, hdmi, vesa, hq Pro 195HQA', 25, '2020-05-15', '450.50'),
 (1, 2, 'Monitor AOC 21.5', 'Full HD LED Widescreen HDMI 22B1HM5',10, '2022-08-20' , '500.00'),
 (2, 3, 'AW320M', 'MOUSE GAMER COM FIO ALIENWARE', 25, '2023-01-01', '100.00'),
 (2, 4, 'Logitech M90','Cinza. Design Ambidestro e Facilidade Plug and Play.',25, '2022-10-06', '80.00'),
