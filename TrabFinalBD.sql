@@ -124,3 +124,15 @@ VALUES('Roze Simonnot','Roze', 'rozesimonnot@yahoo.com', '12365478965', '1975-12
 ('Angelica Duthy', 'Angelica','angelicaduthy@gmail.com', '00254896314', '1991-03-09',4),
 ('Filip Bayston','Filip', 'filipbayston@hotmail.com','54112569874', '1975-6-22',5);
 
+insert into PEDIDO (ped_dt_data_pedido, usu_int_id)
+values('21-08-2023 17:53:00',1),
+('18-02-2023 17:00:00',2),
+('01-01-2023 09:00:00',3),
+('23-03-2023 10:03:00',4),
+('12-07-2023 14:36:00',5)
+;
+
+select * from pedido;
+
+delete from pedido where ped_cd_id = 6;
+
