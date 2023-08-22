@@ -212,3 +212,8 @@ on p2.prod_cd_id =pp.prod_int_id
 where 
 prod_tx_nome = :prod;
 
+-- Deletar o pedido porque o usuario resolveu cancelar a compra. 
+
+DELETE from pedido_produto where ped_int_id = 5 and prod_int_id = 8;
+
+select * from pedido_produto;
