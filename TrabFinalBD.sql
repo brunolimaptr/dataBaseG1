@@ -65,6 +65,18 @@ create table pedido_produto(
 	foreign key (prod_int_id) references produto(prod_cd_id),
 	foreign key (ped_int_id) references pedido(ped_cd_id)
 );
+--Index do produto criado pra mostrar as informações mais rápido
+create index prod1_index on produto(prod_tx_nome, prod_int_estoque, prod_cd_id);
+
+create index prod2_index on produto(prod_nm_valor, prod_dt_data_fabricacao);
+
+--Index do usuário
+create index usu1_index on usuario(usu_cd_id, usu_tx_nome, usu_tx_cpf, usu_dt_data_nascimento);
+
+create index usu2_index on usuario(usu_tx_nome_usuario, usu_tx_email, end_int_id);
+
+--Index do pedido
+create index ped1_index on pedido(ped_cd_id, ped_dt_data_pedido, usu_int_id);
 
 -- insert da tabela endereco
 
@@ -75,7 +87,7 @@ values
 	('Gale','Plaza','396','Pasadena','Coimbra'),
 	('Washington','Crossing','1779','Algarvia','Ilha de São Miguel'),
 	('Stone Corner','Circle','53242','Lamarosa','Ilha do Pico');
-
+select * from endereco;
 
 --Alteração do tipo para texto para caber mais caracteres
 alter table categoria 
@@ -146,6 +158,7 @@ VALUES
 (4, 4, 'intel core i5-13600k','Processor 24M  5.10 GHz quick reference specifications features technologies', 25, '2022-09-02', '2000.00'),
 (5, 1, 'Nvidia Pcyes GeForce 200 Series','Placa de vídeo Nvidia Pcyes GeForce 200 Series G210 PA210G6401D3LP 1GB', 35, '2020-12-25', '200.00'),
 (5, 1, 'GeForce RTX® 4090','ASUS Placa gráfica ROG Strix', 5, '2020-02-26', '18000.00');
+
 
 SELECT * FROM PRODUTO P 
 
