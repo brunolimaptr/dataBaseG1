@@ -18,7 +18,7 @@ O sistema não tem como objetivo registrar detalhes da produção.
 
 ## Modelo Lógico
 <div align="center">
-<img src="https://github.com/brunolimaptr/dataBaseG1/blob/884cc13c7df27cd7b8c61312949ad073c1d42e98/tecnohub.png">
+<img src="https://github.com/brunolimaptr/dataBaseG1/blob/e706d4c5165c6614a69944ee2a5bd2db34417f49/diagrama_logico_PF_BD.drawio.png">
  </div>
 
 ## Tecnologias usadas:
