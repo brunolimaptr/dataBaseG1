@@ -245,3 +245,22 @@ FROM PRODUTO P
 LEFT JOIN PEDIDO_PRODUTO PP 
 ON p.PROD_CD_ID = pp.PROD_INT_ID
 ORDER BY p.PROD_CD_ID asc;
+
+--O cliente tem pouco dinheiro, mas precisa de um produto de cada categoria.
+--Por isso pediu uma busca pelo produto mais barato de cada categoria
+
+--Select distinct imprime o primeiro valor, como no order by já foi colocado em ordem decrescente, ele pega o menor valor.
+select distinct on (c.cat_tx_nome)
+	c.cat_tx_nome as "Categoria",
+	p.prod_tx_nome as "Produto", 
+	min(p.prod_nm_valor) as "Mais barato"
+from
+	produto p
+inner join categoria c on
+	c.cat_cd_id = p.cat_int_id
+group by
+	c.cat_tx_nome, p.prod_tx_nome
+--Dentro de cada categoria, este comando mostra o produto mais barato
+	order by 
+	c.cat_tx_nome, min(p.prod_nm_valor);
+	
