@@ -1,6 +1,19 @@
 -- criação do banco de dados
 
+-- criação dos usuários
+
+create user administrator password '123';
+create user empregado password '1010';
+create user cliente password '2020';
+
 create database tecnohub;
+
+
+-- garante tudo para o admin
+
+grant all
+on database tecnohub
+to administrator;
 
 -- tecnohub, uma loja de periféricos eletrônicos para todos os gostos!
 
@@ -65,18 +78,78 @@ create table pedido_produto(
 	foreign key (prod_int_id) references produto(prod_cd_id),
 	foreign key (ped_int_id) references pedido(ped_cd_id)
 );
+
 --Index do produto criado pra mostrar as informações mais rápido
+
 create index prod1_index on produto(prod_tx_nome, prod_int_estoque, prod_cd_id);
 
 create index prod2_index on produto(prod_nm_valor, prod_dt_data_fabricacao);
 
 --Index do usuário
+
 create index usu1_index on usuario(usu_cd_id, usu_tx_nome, usu_tx_cpf, usu_dt_data_nascimento);
 
 create index usu2_index on usuario(usu_tx_nome_usuario, usu_tx_email, end_int_id);
 
 --Index do pedido
+
 create index ped1_index on pedido(ped_cd_id, ped_dt_data_pedido, usu_int_id);
+
+/* empregado pode ver os produtos, atualizar eles, inserir mais produtos, 
+   e referenciar eles à categoria. Ele pode ver as categorias e também mudar as informações dele mesmo
+   Além de poder gerar a nota fiscal.
+ */
+
+grant select, update, insert, references
+on produto
+to empregado;
+
+grant select
+on categoria
+to empregado;
+
+grant update, select
+on funcionario
+to empregado;
+
+grant select, insert
+on nota_fiscal
+to empregado;
+
+-- o cliente pode ver os produtos e categorias
+
+grant select 
+on produto
+to cliente;
+
+grant select 
+on categoria
+to cliente;
+
+-- o cliente pode ver o próprio login, atualizar ele, e também excluir ele
+
+grant select (usu_tx_nome,usu_tx_nome_usuario,usu_tx_email,usu_tx_cpf), update (usu_tx_nome,usu_tx_nome_usuario,usu_tx_email,usu_tx_cpf)
+on usuario
+to cliente;
+
+grant delete
+on usuario
+to cliente;
+
+/* o cliente pode ver o pedido, atualizar, excluir e também inserir mais coisas no pedido. 
+   Além de ver a nota fiscal */
+
+grant select, update, delete, insert
+on pedido
+to cliente;
+
+grant select, update, delete, insert
+on pedido_produto
+to cliente;
+
+grant select 
+on nota_fiscal
+to cliente;
 
 -- insert da tabela endereco
 
@@ -87,9 +160,11 @@ values
 	('Gale','Plaza','396','Pasadena','Coimbra'),
 	('Washington','Crossing','1779','Algarvia','Ilha de São Miguel'),
 	('Stone Corner','Circle','53242','Lamarosa','Ilha do Pico');
+
 select * from endereco;
 
 --Alteração do tipo para texto para caber mais caracteres
+
 alter table categoria 
 alter column cat_tx_descricao type text;
 
@@ -161,6 +236,7 @@ VALUES
 
 SELECT * FROM PRODUTO P 
 
+-- insert do pedido_produto
 
 insert into pedido_produto(ped_int_id, prod_int_id)
 values
@@ -176,6 +252,7 @@ values
 (5,8);
 
 select * from pedido_produto;
+
 
 -- criação da view nota_fiscal
 
@@ -199,7 +276,8 @@ inner join funcionario f on
 
 select * from nota_fiscal;
 
--- Inner join para descobri os usuários que compraram Monitor 19.5 LED Ergonômico
+-- Inner join para descobri os usuários que compraram qualquer produto.
+
 select usu_cd_id,usu_tx_nome, usu_tx_nome_usuario, prod_tx_nome 
 from usuario u 
 inner join pedido p
@@ -246,10 +324,11 @@ LEFT JOIN PEDIDO_PRODUTO PP
 ON p.PROD_CD_ID = pp.PROD_INT_ID
 ORDER BY p.PROD_CD_ID asc;
 
---O cliente tem pouco dinheiro, mas precisa de um produto de cada categoria.
---Por isso pediu uma busca pelo produto mais barato de cada categoria
+-- O cliente tem pouco dinheiro, mas precisa de um produto de cada categoria.
+-- Por isso pediu uma busca pelo produto mais barato de cada categoria
 
---Select distinct imprime o primeiro valor, como no order by já foi colocado em ordem decrescente, ele pega o menor valor.
+-- Select distinct imprime o primeiro valor, como no order by já foi colocado em ordem decrescente, 
+-- ele pega o menor valor.
 select distinct on (c.cat_tx_nome)
 	c.cat_tx_nome as "Categoria",
 	p.prod_tx_nome as "Produto", 
