@@ -277,6 +277,8 @@ to cliente;
 
 -- Inner join para descobri os usuários que compraram qualquer produto.
 
+select * from produto;
+
 select usu_cd_id,usu_tx_nome, usu_tx_nome_usuario, prod_tx_nome 
 from usuario u 
 inner join pedido p
@@ -284,12 +286,13 @@ on u.usu_cd_id = p.usu_int_id
 inner join pedido_produto pp 
 on p.usu_int_id = pp.ped_int_id
 inner join produto p2
-on p2.prod_cd_id =pp.prod_int_id
+on p2.prod_cd_id = pp.prod_int_id
 where 
 prod_tx_nome = :prod;
 
-
 -- Deletar o pedido porque o usuario resolveu cancelar a compra. 
+
+select * from pedido_produto;
 
 delete
 from
@@ -306,10 +309,6 @@ set
 	prod_int_id = 1
 where
 	pedpro_cd_id = 7;
-
-
-
-select * from pedido_produto;
 
 -- Mostrando tabelas de itens que nao foram comprados.
 
@@ -328,6 +327,7 @@ ORDER BY p.PROD_CD_ID asc;
 
 -- Select distinct imprime o primeiro valor, como no order by já foi colocado em ordem decrescente, 
 -- ele pega o menor valor.
+
 select distinct on (c.cat_tx_nome)
 	c.cat_tx_nome as "Categoria",
 	p.prod_tx_nome as "Produto", 
@@ -338,7 +338,6 @@ inner join categoria c on
 	c.cat_cd_id = p.cat_int_id
 group by
 	c.cat_tx_nome, p.prod_tx_nome
---Dentro de cada categoria, este comando mostra o produto mais barato
-	order by 
-	c.cat_tx_nome, min(p.prod_nm_valor);
+order by -- Dentro de cada categoria, este comando mostra o produto mais barato
+	c.cat_tx_nome, min(p.prod_nm_valor); 
 	
