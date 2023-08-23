@@ -95,62 +95,6 @@ create index usu2_index on usuario(usu_tx_nome_usuario, usu_tx_email, end_int_id
 
 create index ped1_index on pedido(ped_cd_id, ped_dt_data_pedido, usu_int_id);
 
-/* empregado pode ver os produtos, atualizar eles, inserir mais produtos, 
-   e referenciar eles à categoria. Ele pode ver as categorias e também mudar as informações dele mesmo
-   Além de poder gerar a nota fiscal.
- */
-
-grant select, update, insert, references
-on produto
-to empregado;
-
-grant select
-on categoria
-to empregado;
-
-grant update, select
-on funcionario
-to empregado;
-
-grant select, insert
-on nota_fiscal
-to empregado;
-
--- o cliente pode ver os produtos e categorias
-
-grant select 
-on produto
-to cliente;
-
-grant select 
-on categoria
-to cliente;
-
--- o cliente pode ver o próprio login, atualizar ele, e também excluir ele
-
-grant select (usu_tx_nome,usu_tx_nome_usuario,usu_tx_email,usu_tx_cpf), update (usu_tx_nome,usu_tx_nome_usuario,usu_tx_email,usu_tx_cpf)
-on usuario
-to cliente;
-
-grant delete
-on usuario
-to cliente;
-
-/* o cliente pode ver o pedido, atualizar, excluir e também inserir mais coisas no pedido. 
-   Além de ver a nota fiscal */
-
-grant select, update, delete, insert
-on pedido
-to cliente;
-
-grant select, update, delete, insert
-on pedido_produto
-to cliente;
-
-grant select 
-on nota_fiscal
-to cliente;
-
 -- insert da tabela endereco
 
 insert into endereco(end_tx_rua, end_tx_bairro, end_tx_numero, end_tx_cidade, end_tx_estado)
@@ -234,7 +178,7 @@ VALUES
 (5, 1, 'GeForce RTX® 4090','ASUS Placa gráfica ROG Strix', 5, '2020-02-26', '18000.00');
 
 
-SELECT * FROM PRODUTO P 
+SELECT * FROM PRODUTO P;
 
 -- insert do pedido_produto
 
@@ -252,7 +196,6 @@ values
 (5,8);
 
 select * from pedido_produto;
-
 
 -- criação da view nota_fiscal
 
@@ -275,6 +218,62 @@ inner join funcionario f on
 	p2.func_int_id = f.func_cd_id;
 
 select * from nota_fiscal;
+
+/* empregado pode ver os produtos, atualizar eles, inserir mais produtos, 
+   e referenciar eles à categoria. Ele pode ver as categorias e também mudar as informações dele mesmo
+   Além de poder gerar a nota fiscal.
+ */
+
+grant select, update, insert, references
+on produto
+to empregado;
+
+grant select
+on categoria
+to empregado;
+
+grant update, select
+on funcionario
+to empregado;
+
+grant select, insert
+on nota_fiscal
+to empregado;
+
+-- o cliente pode ver os produtos e categorias
+
+grant select 
+on produto
+to cliente;
+
+grant select 
+on categoria
+to cliente;
+
+-- o cliente pode ver o próprio login, atualizar ele, e também excluir ele
+
+grant select (usu_tx_nome,usu_tx_nome_usuario,usu_tx_email,usu_tx_cpf), update (usu_tx_nome,usu_tx_nome_usuario,usu_tx_email,usu_tx_cpf)
+on usuario
+to cliente;
+
+grant delete
+on usuario
+to cliente;
+
+/* o cliente pode ver o pedido, atualizar, excluir e também inserir mais coisas no pedido. 
+   Além de ver a nota fiscal */
+
+grant select, update, delete, insert
+on pedido
+to cliente;
+
+grant select, update, delete, insert
+on pedido_produto
+to cliente;
+
+grant select 
+on nota_fiscal
+to cliente;
 
 -- Inner join para descobri os usuários que compraram qualquer produto.
 
