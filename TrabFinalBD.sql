@@ -212,14 +212,15 @@ on p2.prod_cd_id =pp.prod_int_id
 where 
 prod_tx_nome = :prod;
 
+
 -- Deletar o pedido porque o usuario resolveu cancelar a compra. 
 
 delete
 from
 	pedido_produto
 where
-	ped_int_id = 5
-	and prod_int_id = 8;
+	pedpro_cd_id = 8;
+
 
 -- Alterar o pedido porque o usuario resolveu trocar o produto.
 
@@ -228,8 +229,7 @@ update
 set
 	prod_int_id = 1
 where
-	prod_int_id = 6
-	and ped_int_id = 4;
+	pedpro_cd_id = 7;
 
 
 
