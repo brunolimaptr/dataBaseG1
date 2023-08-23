@@ -11,6 +11,16 @@ O sistema não tem como objetivo registrar detalhes da produção.
 - Realiza pedidos;
 - Armazena dados dos funcionários.
 
+## Modelo Conceitual
+<div align="center">
+<img src="https://github.com/brunolimaptr/dataBaseG1/blob/884cc13c7df27cd7b8c61312949ad073c1d42e98/Diagrama_conceitual_PF_BD.drawio.png">
+ </div>
+
+## Modelo Lógico
+<div align="center">
+<img src="https://github.com/brunolimaptr/dataBaseG1/blob/884cc13c7df27cd7b8c61312949ad073c1d42e98/tecnohub.png">
+ </div>
+
 ## Tecnologias usadas:
 - [Draw.io](https://app.diagrams.net/);
 - [Trello](https://trello.com/b/qRhzIPh5/projeto-final-database);
