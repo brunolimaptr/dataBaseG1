@@ -233,3 +233,15 @@ where
 
 
 select * from pedido_produto;
+
+-- Mostrando tabelas de itens que nao foram comprados.
+
+SELECT 
+p.PROD_CD_ID,
+p.PROD_TX_NOME,
+p.PROD_NM_VALOR,
+pp.PROD_INT_ID 
+FROM PRODUTO P 
+LEFT JOIN PEDIDO_PRODUTO PP 
+ON p.PROD_CD_ID = pp.PROD_INT_ID
+ORDER BY p.PROD_CD_ID asc;
