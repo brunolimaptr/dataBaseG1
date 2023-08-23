@@ -18,12 +18,12 @@ create table endereco(
 create table usuario(
 	usu_cd_id serial primary key not null,
 	usu_tx_nome varchar(45) not null,
-	usu_tx_nome_usuário varchar(45) not null,
+	usu_tx_nome_usuario varchar(45) not null,
 	usu_tx_email varchar(45) not null,
 	usu_tx_CPF varchar(45) not null,
 	usu_dt_data_Nascimento date not null,
 	end_int_id int not null,
-	foreign key (end_int_id) references endereco (end_cd_int)
+	foreign key (end_int_id) references endereco (end_cd_id)
 );
 
 create table pedido(
@@ -129,6 +129,9 @@ delete from pedido where ped_cd_id = 11;
 
 -- Insert tabela do funcionário
 
+alter table funcionario 
+rename column fun_tx_cpf to func_tx_cpf;
+
 insert into funcionario (func_tx_nome, func_tx_cpf)
 values ('Junior','01234567899' ),
 ('Sthefany','22233344456'),
@@ -138,10 +141,6 @@ values ('Junior','01234567899' ),
 
 select func_tx_cpf
 from funcionario;
-
-
-alter table funcionario 
-rename column fun_tx_cpf to func_tx_cpf;
 
 alter table PRODUTO 
 alter column prod_tx_descricao type text;
