@@ -214,6 +214,23 @@ prod_tx_nome = :prod;
 
 -- Deletar o pedido porque o usuario resolveu cancelar a compra. 
 
-DELETE from pedido_produto where ped_int_id = 5 and prod_int_id = 8;
+delete
+from
+	pedido_produto
+where
+	ped_int_id = 5
+	and prod_int_id = 8;
+
+-- Alterar o pedido porque o usuario resolveu trocar o produto.
+
+update
+	pedido_produto
+set
+	prod_int_id = 1
+where
+	prod_int_id = 6
+	and ped_int_id = 4;
+
+
 
 select * from pedido_produto;
