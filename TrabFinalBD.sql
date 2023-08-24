@@ -1,19 +1,6 @@
 -- criação do banco de dados
 
--- criação dos usuários
-
-create user administrator password '123';
-create user empregado password '1010';
-create user cliente password '2020';
-
 create database tecnohub;
-
-
--- garante tudo para o admin
-
-grant all
-on database tecnohub
-to administrator;
 
 -- tecnohub, uma loja de periféricos eletrônicos para todos os gostos!
 
@@ -55,7 +42,7 @@ create table categoria(
 create table funcionario(
 	func_cd_id serial primary key not null,
 	func_tx_nome varchar(45) not null,
-	fun_tx_cpf varchar(45) not null
+	func_tx_cpf varchar(45) not null
 );
 
 create table produto(
@@ -123,8 +110,6 @@ values
 
 select * from categoria;
 
-delete from categoria where cat_cd_id = 6;
-
 select * from usuario;
 
 INSERT INTO USUARIO  (USU_TX_NOME, USU_TX_NOME_USUARIO, USU_TX_EMAIL, USU_TX_CPF, USU_DT_DATA_NASCIMENTO, END_INT_ID)
@@ -143,8 +128,6 @@ values('21-08-2023 17:53:00',1),
 ;
 
 select * from pedido;
-
-delete from pedido where ped_cd_id = 11;
 
 -- Insert tabela do funcionário
 
@@ -201,12 +184,12 @@ select * from pedido_produto;
 
 create view nota_fiscal as
 select
-	u.usu_tx_nome,
-	u.usu_tx_cpf,
-	p.ped_dt_data_pedido,
-	p2.prod_tx_nome,
-	p2.prod_nm_valor,
-	f.func_tx_nome
+	u.usu_tx_nome as "Nome",
+	u.usu_tx_cpf as "CPF",
+	p.ped_dt_data_pedido as "Data do Pedido",
+	p2.prod_tx_nome as "Nome do Produto",
+	p2.prod_nm_valor as "Valor",
+	f.func_tx_nome as "Funcionário"
 from usuario u
 inner join pedido p on
 	u.usu_cd_id = p.usu_int_id
@@ -218,6 +201,18 @@ inner join funcionario f on
 	p2.func_int_id = f.func_cd_id;
 
 select * from nota_fiscal;
+
+-- criação dos usuários
+
+create user administrator password '123';
+create user empregado password '1010';
+create user cliente password '2020';
+
+-- garante tudo para o administrador.
+
+grant all
+on database tecnohub
+to administrator;
 
 /* empregado pode ver os produtos, atualizar eles, inserir mais produtos, 
    e referenciar eles à categoria. Ele pode ver as categorias e também mudar as informações dele mesmo
@@ -235,6 +230,12 @@ to empregado;
 grant update, select
 on funcionario
 to empregado;
+
+grant select(usu_tx_nome_usuario)
+on usuario
+to empregado;
+
+select usu_tx_nome_usuario from usuario;
 
 grant select, insert
 on nota_fiscal
@@ -274,6 +275,15 @@ to cliente;
 grant select 
 on nota_fiscal
 to cliente;
+
+grant select(func_tx_nome)
+on funcionario
+to cliente;
+
+select * from funcionario;
+
+select func_tx_nome from funcionario;
+
 
 -- Inner join para descobri os usuários que compraram qualquer produto.
 
